@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Camzo Store</title>
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #f6f8fa;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #222;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 48px auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(30,34,40,0.07);
+            padding: 32px 18px 24px 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            border: 1px solid #ececec;
+        }
+        .card:hover {
+            box-shadow: 0 8px 32px rgba(30,34,40,0.12);
+            transform: translateY(-4px) scale(1.03);
+        }
+        .card img {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(30,34,40,0.06);
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: #222;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(30,34,40,0.10);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 16px;
+            padding: 38px 32px 32px 32px;
+            max-width: 370px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(30,34,40,0.13);
+            border: 1px solid #ececec;
+        }
+        .close {
+            position: absolute;
+            top: 14px; right: 22px;
+            font-size: 22px;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close:hover {
+            color: #222;
+        }
+        .modal-btn {
+            margin-top: 24px;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 7px;
+            background: #222;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .modal-btn:hover {
+            background: #3498db;
+        }
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 24px 10px 18px 10px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Camzo Store</h1>
+    <div class="grid">
+        <div class="card" onclick="openModal('RamdoWeb', 'Un site web drôle et amusant pour créer des URL aléatoires.', 'site', 'https://titi-ui.github.io/ramdoweb/')">
+            <img src="ramdoweb_logo.png" alt="RamdoWeb">
+            <h3>RamdoWeb</h3>
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+            <button class="modal-btn" id="modal-action"></button>
+        </div>
+    </div>
+    <script>
+        function openModal(title, desc, type, link) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = desc;
+            var btn = document.getElementById('modal-action');
+            btn.textContent = "Visiter le site";
+            btn.onclick = function() { window.open(link, '_blank'); };
+            document.getElementById('modal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            var modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
